@@ -1,0 +1,74 @@
+#!/bin/bash
+ARGS=""
+fileTypes='*.h *.cpp'
+PATH="./"
+GIT=0
+HELP="
+      Usage:          MrProper [-p path] [-v] [-s] [-f] [-h] [-t regexp] [-g]
+
+      -p path         Path to crawl in for files
+      -v verbose      Show verbose output of what is happening
+      -s simulate     Simulate and dont remove anything (verbose is implied).
+      -f force        Force removal and never prompt
+      -h help         Show this help
+      -g git          Remove .git directory along with all sourcecodes
+      -t filetypes    Filetypes to delete. A REGEXP applies here. Default (if ommited): '*.h *.cpp'
+
+      Example:        ./MrProper -p ./ -vfg # will remove all .cpp and .h files in current directory, leave no git trail behind
+                      ./MrProper -p /home/user/test_directory -s -t '*.py *.pyw' # will print out all python .py and .pyw files in /home/user/test_directory
+
+      Created by      theMladyPan@2018
+"
+
+if [ $# -eq 0 ];
+then
+    echo "
+      Error: No option provided
+    "
+    echo "$HELP"
+    exit 0
+else
+
+  while getopts gvsfhp:t: option
+  do
+    case "${option}"
+    in
+    h)echo "
+      Welcome to MrProper Source Code Maid
+
+
+      I will clean all source files you want to hide from customer"
+      echo "$HELP"
+      exit;;
+    v)  VERBOSE=1
+        ARGS+=" -v";;
+    p)  PATH=$OPTARG;;
+    s)  SIMULATE=1
+        VERBOSE=1;;
+    f)  ARGS+=" -f";;
+    g)  GIT=1;;
+    t)  fileTypes=$OPTARG;;
+  esac
+  done
+
+  for fileType in $fileTypes
+    do
+    if [[ $VERBOSE ]]; then
+      echo 'Removing '$fileType ':'
+    fi
+    if [[ $SIMULATE ]]; then
+      /usr/bin/find $PATH -name $fileType
+    else
+      /usr/bin/find $PATH -name $fileType|/usr/bin/xargs /bin/rm $ARGS
+    fi
+  done
+
+  if [[ $GIT ]]; then
+    if [[ $SIMULATE ]]; then
+      echo 'Will remove: '
+      /usr/bin/find $PATH -name .git
+    else
+      /usr/bin/find $PATH -name .git|/usr/bin/xargs /bin/rm -r $ARGS
+    fi
+  fi
+fi

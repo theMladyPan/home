@@ -1,12 +1,13 @@
 #gitovkske aliasy
 alias gis='git status'
 alias gic='git commit'
-alias gid='git add .'
-alias gib='git checkout'
-alias gill='git pull'
-alias gish='git push'
+alias gid='git add'
+alias gout='git checkout'
+alias gull='git pull'
+alias gush='git push'
 alias gir='git rebase'
 alias gim='git merge'
+alias gitch='git fetch'
 
 #kompresia/dekompresia
 alias xz='xz --threads=0'
@@ -38,7 +39,6 @@ alias fhdvnc='vncserver -geometry 1920x1080'
 alias hdvnc='vncserver -geometry 1024x576'
 alias pls='fc -e : -1|xargs /usr/bin/sudo'
 alias toppage='top -b -n 1|cat'
-alias df='df -h'
 
 function md(){
 	mkdir $1 && cd $1
@@ -47,6 +47,7 @@ function md(){
 function zalohaDisku(){
 	sudo dd if=$1 bs=10M | pigz -v --fast > $2
 }
+alias diskInfo='fdisk -lu'
 
 alias temp='while true;do clear;cat /sys/class/thermal/thermal_zone0/temp;sleep 1;done'
 alias power='while true;do clear;pwr_var=$(cat /sys/class/power_supply/BAT0/power_now);echo $(( $pwr_var / 1000000)) W;sleep 1;done'
