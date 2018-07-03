@@ -49,8 +49,4 @@ function zalohaDisku(){
 }
 alias diskInfo='fdisk -lu'
 
-alias temp='while true;do clear;cat /sys/class/thermal/thermal_zone0/temp;sleep 1;done'
-alias power='while true;do clear;pwr_var=$(cat /sys/class/power_supply/BAT0/power_now);echo $(( $pwr_var / 1000000)) W;sleep 1;done'
-
-alias linc='bash /home/stanke/.support_codes/inc.sh'
-alias ldec='bash /home/stanke/.support_codes/dec.sh'
+alias stats='bash /home/stanke/.support_codes/stats.sh'
