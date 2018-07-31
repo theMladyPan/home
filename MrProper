@@ -36,7 +36,6 @@ else
     h)echo "
       Welcome to MrProper Source Code Maid
 
-
       I will clean all source files you want to hide from customer"
       echo "$HELP"
       exit;;

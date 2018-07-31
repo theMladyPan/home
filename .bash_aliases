@@ -1,3 +1,6 @@
+#run binpicking web server
+alias bipiserver='cd ~/binpicking/web&&/usr/bin/python3 manage.py runserver'
+
 #gitovkske aliasy
 alias gis='git status'
 alias gic='git commit'
@@ -8,6 +11,10 @@ alias gush='git push'
 alias gir='git rebase'
 alias gim='git merge'
 alias gitch='git fetch'
+alias gogo='git log --oneline'
+
+python2='/usr/bin/python'
+python='/usr/bin/python3'
 
 #kompresia/dekompresia
 alias xz='xz --threads=0'
@@ -23,6 +30,7 @@ alias bipidocker='/bin/bash $HOME/Photoneo/docker_shortcut.sh'
 #bezne aliasy
 alias watch='watch -d -n1'
 alias ll='ls -lah'
+alias l='ls -CFsh'
 alias suclean='sudo apt-get autoremove&&sudo apt-get autoclean'
 alias netok='ping google.sk -c 3'
 alias ..='cd ..'
@@ -50,3 +58,4 @@ function zalohaDisku(){
 alias diskInfo='fdisk -lu'
 
 alias stats='bash /home/stanke/.support_codes/stats.sh'
+alias mount_disketa='mkdir -p ~/Disketa&&sshfs odroid@192.168.1.100:/home/odroid/Disketa ~/Disketa'

@@ -23,12 +23,20 @@ while true; do
   if [ $CHARGING_RAW -eq 1 ]; then
     CHARGING="charging"
     RATE=$(( (98*$RATE + 2*($ENGY_RAW-$ENGY_OLD))/100))
-    TIME=$((($ENGY_FULL-$ENGY_RAW)/$RATE))
+    if [ $RATE -eq 0 ]; then
+      TIME=0
+    else
+      TIME=$((($ENGY_FULL-$ENGY_RAW)/$RATE))
+    fi
     BATTERY="time to charge"
   else
     CHARGING="discharging"
     RATE=$(( (98*$RATE + 2*($ENGY_OLD-$ENGY_RAW))/100))
-    TIME=$((($ENGY_RAW)/$RATE))
+    if [ $RATE -eq 0 ]; then
+      TIME=0
+    else
+      TIME=$((($ENGY_RAW)/$RATE))
+    fi
     BATTERY="battery time"
   fi
 
