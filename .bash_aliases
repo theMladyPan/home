@@ -1,17 +1,18 @@
 #run binpicking web server
 alias bipiserver='cd ~/binpicking/web&&/usr/bin/python3 manage.py runserver'
+alias django='python3 manage.py runserver 0:8000'
 
 #gitovkske aliasy
 alias gis='git status'
 alias gic='git commit'
-alias gid='git add'
+alias gad='git add'
 alias gout='git checkout'
 alias gull='git pull'
 alias gush='git push'
-alias gir='git rebase'
-alias gim='git merge'
-alias gitch='git fetch'
-alias gogo='git log --oneline'
+alias gibase='git rebase'
+alias gerge='git merge'
+alias getch='git fetch'
+alias glog='git log --oneline'
 
 python2='/usr/bin/python'
 python='/usr/bin/python3'
@@ -24,8 +25,8 @@ alias pigz='pigz -k'
 alias unpigz='unpigz -k'
 
 #dockerovkske aliasy
-alias cleandockers='docker ps -a|grep photo|tr -s " "|cut -d " " -f 1|xargs docker stop&&docker ps -a|grep photo|tr -s " "|cut -d " " -f 1|xargs docker rm'
-alias bipidocker='/bin/bash $HOME/Photoneo/docker_shortcut.sh'
+alias bipidocker='/bin/bash $HOME/nvidia_docker_shortcut'
+alias dockerclean="docker ps -a|grep ago|awk '{print $1}'"
 
 #bezne aliasy
 alias watch='watch -d -n1'
