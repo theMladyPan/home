@@ -7,6 +7,7 @@ import pymongo
 
 mongo = pymongo.MongoClient('localhost', 27017)
 database = mongo.databaseName
+database.authenticate("username", "pass")
 collection = database.collectionName
 
 collection.find_one({"_id": 2123}) # return first matching entry
@@ -18,5 +19,21 @@ except pymongo.errors.DuplicateKeyError:
 
 from commandline (sudo apt install mongo-client (?))
 ```shell
-mongo 192.168.1.100/databaseName
+mongo 192.168.1.100/databaseName -u "username"
+
+db.createUser(
+  {
+    user: "stanke",
+    pwd: "passwd",
+    roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]
+  }
+)
+
+db.createUser(
+  {
+    user: "stanke",
+    pwd: "otherpassword",
+    roles: [ { role: "readWrite", db: "crypto" } ]
+  }
+)
 ```
