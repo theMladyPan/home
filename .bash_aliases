@@ -1,6 +1,7 @@
 #run binpicking web server
-alias bipiserver='cd ~/binpicking/web&&/usr/bin/python3 manage.py runserver'
+alias bipiserver='source ~/ssd/Projects/venv36/bin/activate&&cd ~/binpicking/web&&dj r'
 alias django='python3 manage.py runserver 0:8000'
+alias phossh='ssh photoneo@10.20.1.69'
 
 #gitovkske aliasy
 alias gis='git status'
@@ -13,6 +14,8 @@ alias gibase='git rebase'
 alias gerge='git merge'
 alias getch='git fetch'
 alias glog='git log --oneline'
+alias gif='git diff'
+alias graf="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
 
 python2='/usr/bin/python'
 python='/usr/bin/python3'
@@ -29,11 +32,12 @@ alias bipidocker='/bin/bash $HOME/nvidia_docker_shortcut'
 alias dockerclean="docker ps -a|grep ago|awk '{print $1}'"
 
 #bezne aliasy
+alias gimme='sudo apt install -y'
 alias watch='watch -d -n1'
 alias ll='ls -lah'
 alias l='ls -CFsh'
 alias suclean='sudo apt-get autoremove&&sudo apt-get autoclean'
-alias netok='ping google.sk -c 3'
+alias netok='if ping google.sk -c3 1>/dev/null 2>/dev/null;then echo Net OK;else echo Net NOK;fi'
 alias ..='cd ..'
 alias suinstall='sudo apt-get install'
 alias supurge='sudo apt-get purge'
