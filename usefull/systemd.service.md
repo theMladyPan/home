@@ -25,4 +25,6 @@ then run:
 ```shell
 sudo chmod 644 /lib/systemd/system/my-new-service.service
 sudo systemctl daemon-reload
+sudo systemctl enable my-new-service
+sudo systemctl start my-new-service
 ```
