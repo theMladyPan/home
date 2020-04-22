@@ -1,8 +1,3 @@
-#run binpicking web server
-alias bipiserver='source ~/ssd/Projects/venv36/bin/activate&&cd ~/binpicking/web&&dj r'
-alias django='python3 manage.py runserver 0:8000'
-alias phossh='ssh photoneo@10.20.1.69'
-
 #gitovkske aliasy
 alias gis='git status'
 alias gic='git commit'
@@ -17,8 +12,8 @@ alias glog='git log --oneline'
 alias gif='git diff'
 alias graf="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
 
-python2='/usr/bin/python'
-python='/usr/bin/python3'
+alias python2='/usr/bin/python'
+alias python='/usr/bin/python3'
 
 #kompresia/dekompresia
 alias xz='xz --threads=0'
@@ -27,9 +22,37 @@ alias rozbalit='xz --threads=0 -dkv'
 alias pigz='pigz -k'
 alias unpigz='unpigz -k'
 
-#dockerovkske aliasy
-alias bipidocker='/bin/bash $HOME/nvidia_docker_shortcut'
+#dockerovkske alias
 alias dockerclean="docker ps -a|grep ago|awk '{print $1}'"
+function shared_docker(){
+  if [[ -n $3 ]]; then
+    docker run --name=$3 --network=host --privileged \
+      -v /dev:/dev \
+      -v `echo ~`:/home/${USER} \
+      -p 8080:80 \
+      --user=`id -u ${USER}` \
+      --env="DISPLAY" \
+      --volume="/etc/group:/etc/group:ro" \
+      --volume="/etc/passwd:/etc/passwd:ro" \
+      --volume="/etc/shadow:/etc/shadow:ro" \
+      --volume="/etc/sudoers.d:/etc/sudoers.d:ro" \
+      --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
+      -it $1:$2 /bin/bash
+  else
+    docker run --network=host --privileged \
+      -v /dev:/dev \
+      -v `echo ~`:/home/${USER} \
+      -p 8080:80 \
+      --user=`id -u ${USER}` \
+      --env="DISPLAY" \
+      --volume="/etc/group:/etc/group:ro" \
+      --volume="/etc/passwd:/etc/passwd:ro" \
+      --volume="/etc/shadow:/etc/shadow:ro" \
+      --volume="/etc/sudoers.d:/etc/sudoers.d:ro" \
+      --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
+      -it $1:$2 /bin/bash
+  fi
+}
 
 #bezne aliasy
 alias gimme='sudo apt install -y'
@@ -49,8 +72,8 @@ alias supgrade='sudo apt-get update&&sudo apt-get upgrade -y&&sudo apt-get autor
 alias aliases='cat ~/.bash_aliases'
 alias chalias='nano ~/.bash_aliases&&. ~/.bash_aliases'
 alias fhdvnc='vncserver -geometry 1920x1080'
-alias hdvnc='vncserver -geometry 1024x576'
-alias pls='fc -e : -1|xargs /usr/bin/sudo'
+alias hdvnc='vncserver -geometry 1280x720'
+alias pls='sudo $(fc -ln -1)'
 alias toppage='top -b -n 1|cat'
 
 function md(){
